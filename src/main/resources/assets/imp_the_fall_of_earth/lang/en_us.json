@@ -1,0 +1,28 @@
+{
+  "creativetab.imp_the_fall_of_earth.spectral_tab":  "Imperial: The Fall of Earth",
+
+  "item.imp_the_fall_of_earth.blaster_empty": "Empty Blaster",
+  "item.imp_the_fall_of_earth.blaster_blue": "Blue Blaster",
+  "item.imp_the_fall_of_earth.blaster_zoomed_blue": "Blue Blaster",
+  "item.imp_the_fall_of_earth.blaster_green": "Green Blaster",
+  "item.imp_the_fall_of_earth.blaster_zoomed_green": "Green Blaster",
+  "item.imp_the_fall_of_earth.blaster_red": "Red Blaster",
+  "item.imp_the_fall_of_earth.blaster_zoomed_red": "Red Blaster",
+
+  "item.imp_the_fall_of_earth.pistol_empty": "Empty Pistol",
+  "item.imp_the_fall_of_earth.pistol_blue": "Blue Pistol",
+  "item.imp_the_fall_of_earth.pistol_green": "Green Pistol",
+  "item.imp_the_fall_of_earth.pistol_red": "Red Pistol",
+
+  "item.imp_the_fall_of_earth.crystal_blue": "Blue Crystal",
+  "item.imp_the_fall_of_earth.crystal_green": "Green Crystal",
+  "item.imp_the_fall_of_earth.crystal_red": "Red Crystal",
+  "item.imp_the_fall_of_earth.durasteel_ingot": "Durasteel Ingot",
+
+  "sounds.imp_the_fall_of_earth.blaster_shot": "Shot",
+  "death.attack.freeze_in_storm": "%1$s froze to death in the Storm",
+
+  "message.imp_the_fall_of_earth.toggled_storm_on": "The Storm is raging on the surface again. Please stay underground!",
+  "message.imp_the_fall_of_earth.toggled_storm_off": "The furious Storm has calmed down. It's safe to come out!",
+  "message.imp_the_fall_of_earth.storm_warning": "It's getting colder outside. It will ba safer to stay in."
+}

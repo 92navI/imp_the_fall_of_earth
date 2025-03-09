@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "dg ",
+    "nmd",
+    "ddc"
+  ],
+  "key": {
+    "d": {
+      "item": "imp_the_fall_of_earth:durasteel_ingot"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "m": {
+      "item": "tfmg:radial_engine"
+    },
+    "c": {
+      "item": "tfmg:cable_tube"
+    },
+    "g": {
+      "item": "minecraft:spyglass"
+    }
+  },
+  "result": {
+    "item": "imp_the_fall_of_earth:blaster_empty"
+  }
+}

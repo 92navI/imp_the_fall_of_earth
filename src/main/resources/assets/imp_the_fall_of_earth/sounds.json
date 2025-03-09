@@ -1,0 +1,10 @@
+{
+  "blaster_shoot_sound": {
+    "subtitles": "sounds.imp_the_fall_of_earth.blaster_shot",
+    "sounds": [
+      "imp_the_fall_of_earth:blaster_sound_1",
+      "imp_the_fall_of_earth:blaster_sound_2",
+      "imp_the_fall_of_earth:blaster_sound_3"
+    ]
+  }
+}

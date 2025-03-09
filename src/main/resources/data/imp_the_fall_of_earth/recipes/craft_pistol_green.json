@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "sh ",
+    " ph",
+    "# s"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:calibrated_sculk_sensor"
+    },
+    "h": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "p": {
+      "item": "imp_the_fall_of_earth:pistol_empty"
+    },
+    "#": {
+      "item": "imp_the_fall_of_earth:crystal_green"
+    }
+  },
+  "result": {
+    "item": "imp_the_fall_of_earth:pistol_green"
+  }
+}

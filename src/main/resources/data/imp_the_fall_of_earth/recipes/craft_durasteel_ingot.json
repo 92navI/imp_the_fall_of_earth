@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "nil",
+    "#s#",
+    "n#l"
+  ],
+  "key": {
+    "#": {
+      "item": "createbigcannons:nethersteel_ingot"
+    },
+    "n": {
+      "item": "tfmg:nickel_ingot"
+    },
+    "s": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "l": {
+      "item": "tfmg:lead_ingot"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "imp_the_fall_of_earth:durasteel_ingot"
+  }
+}

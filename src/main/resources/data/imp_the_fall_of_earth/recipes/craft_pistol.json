@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "   ",
+    "nmc",
+    "sd "
+  ],
+  "key": {
+    "d": {
+      "item": "imp_the_fall_of_earth:durasteel_ingot"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "m": {
+      "item": "tfmg:radial_engine"
+    },
+    "c": {
+      "item": "tfmg:cable_tube"
+    },
+    "s": {
+      "item": "createbigcannons:nethersteel_ingot"
+    }
+  },
+  "result": {
+    "item": "imp_the_fall_of_earth:pistol_empty"
+  }
+}

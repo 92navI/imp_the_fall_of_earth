@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "imp_the_fall_of_earth:item/crystal_green"
+	}
+}

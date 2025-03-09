@@ -1,0 +1,28 @@
+{
+  "creativetab.imp_the_fall_of_earth.spectral_tab":  "Империал: Падение Земли",
+
+  "item.imp_the_fall_of_earth.blaster_empty": "Пустой Бластер",
+  "item.imp_the_fall_of_earth.blaster_blue": "Синий Бластер",
+  "item.imp_the_fall_of_earth.blaster_zoomed_blue": "Синий Бластер",
+  "item.imp_the_fall_of_earth.blaster_green": "Зелёный Бластер",
+  "item.imp_the_fall_of_earth.blaster_zoomed_green": "Зелёный Бластер",
+  "item.imp_the_fall_of_earth.blaster_red": "Красный Бластер",
+  "item.imp_the_fall_of_earth.blaster_zoomed_red": "Красный Бластер",
+
+  "item.imp_the_fall_of_earth.pistol_empty": "Пустой Пистолет",
+  "item.imp_the_fall_of_earth.pistol_blue": "Синий Пистолет",
+  "item.imp_the_fall_of_earth.pistol_green": "Зелёный Пистолет",
+  "item.imp_the_fall_of_earth.pistol_red": "Красный Пистолет",
+
+  "item.imp_the_fall_of_earth.crystal_blue": "Синий Кристал",
+  "item.imp_the_fall_of_earth.crystal_green": "Зелёный Кристал",
+  "item.imp_the_fall_of_earth.crystal_red": "Красный Кристал",
+  "item.imp_the_fall_of_earth.durasteel_ingot": "Слиток Дюрастали",
+
+  "sounds.imp_the_fall_of_earth.blaster_shot": "Выстрел",
+  "death.attack.freeze_in_storm": "%1$s замёрз в Смертельном Шторме",
+
+  "message.imp_the_fall_of_earth.toggled_storm_on": "На поверхности опять бушует Шторм. Оставайтесь под землёй!",
+  "message.imp_the_fall_of_earth.toggled_storm_off": "Шторм притих. Выходить безопасно!",
+  "message.imp_the_fall_of_earth.storm_warning": "На улице стаёт холоднее. Будет безопаснее оставатся внутри."
+}

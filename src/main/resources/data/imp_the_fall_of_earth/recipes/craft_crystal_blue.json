@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ggg",
+    "#b#",
+    "eze"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:tinted_glass"
+    },
+    "#": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "b": {
+      "item": "minecraft:end_crystal"
+    },
+    "e": {
+      "item": "create_sa:hydraulic_engine"
+    },
+    "z": {
+      "item": "create:blaze_burner"
+    }
+  },
+  "result": {
+    "item": "imp_the_fall_of_earth:crystal_blue"
+  }
+}
