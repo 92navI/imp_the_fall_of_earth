@@ -17,11 +17,11 @@ public class Config {
 
     private static final ForgeConfigSpec.DoubleValue BLASTER_DAMAGE = BUILDER
             .comment("The damage of a blaster charge")
-            .defineInRange("blaster_damage", 5D, .5D, Double.MAX_VALUE);
+            .defineInRange("blaster_damage", 19.0D, .5D, Double.MAX_VALUE);
 
     private static final ForgeConfigSpec.DoubleValue PISTOL_DAMAGE = BUILDER
             .comment("The damage of a pistol charge")
-            .defineInRange("pistol_damage", 3D, .5D, Double.MAX_VALUE);
+            .defineInRange("pistol_damage", 11.0D, .5D, Double.MAX_VALUE);
 
     private static final ForgeConfigSpec.LongValue STORM_COOLDOWN = BUILDER
             .comment("The time in minutes it takes for the deadly Storm to boot up if not using -strict")
@@ -51,7 +51,6 @@ public class Config {
     static void onLoad(final ModConfigEvent event) {
 
         blaster_charge_velocity = BLASTER_CHARGE_VELOCITY.get().floatValue();
-
         blaster_damage = BLASTER_DAMAGE.get().floatValue();
 
         pistol_damage = PISTOL_DAMAGE.get().floatValue();
