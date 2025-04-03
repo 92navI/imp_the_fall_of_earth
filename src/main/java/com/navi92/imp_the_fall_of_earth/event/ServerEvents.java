@@ -2,6 +2,7 @@ package com.navi92.imp_the_fall_of_earth.event;
 
 import com.navi92.imp_the_fall_of_earth.command.StormControlCommand;
 import com.navi92.imp_the_fall_of_earth.data.damage_sources.ModDamageSources;
+import com.navi92.imp_the_fall_of_earth.item.custom.Blaster;
 import com.navi92.imp_the_fall_of_earth.item.custom.Shootable;
 import com.navi92.imp_the_fall_of_earth.main.Config;
 import com.navi92.imp_the_fall_of_earth.main.TheFallOfEarth;
@@ -10,9 +11,14 @@ import com.navi92.imp_the_fall_of_earth.network.packets.C2SLeftClickAirToFirePac
 import com.navi92.imp_the_fall_of_earth.util.MessagingService;
 import com.navi92.imp_the_fall_of_earth.util.StormData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -27,6 +33,8 @@ import net.minecraftforge.server.command.ConfigCommand;
 public class ServerEvents {
     @Mod.EventBusSubscriber(modid = TheFallOfEarth.MOD_ID)
     public static class ServerForgeEvents {
+
+        private static final TagKey<Item> BLASTER_TAG = TagKey.create(Registries.ITEM, new ResourceLocation(TheFallOfEarth.MOD_ID, "blasters"));
 
         private static int tick = 0;
 
@@ -97,21 +105,26 @@ public class ServerEvents {
         @SubscribeEvent
         public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
             Player player = event.player;
-            if (event.side.isServer() && StormData.INSTANCE.isOn()) {
-                if (isHigherThanWg((ServerLevel) player.level(), player.blockPosition())) {
-                    if (!(player.getTeam() != null && player.getTeam().getName().equals("immune"))) {
+            if (event.side.isServer()) {
+                if (StormData.INSTANCE.isOn()) {
+                    if (isInStorm((ServerLevel) player.level(), player.blockPosition())) {
+                        if (!(player.getTeam() != null && player.getTeam().getName().equals("immune"))) {
 
-                        DamageSource freezeInStorm =
-                                new ModDamageSources(event.player.level().registryAccess()).getFreezeInStorm();
+                            DamageSource freezeInStorm =
+                                    new ModDamageSources(event.player.level().registryAccess()).getFreezeInStorm();
 
-                        event.player.hurt(freezeInStorm, 5.0f);
+                            event.player.hurt(freezeInStorm, 5.0f);
+                        }
                     }
                 }
             }
         }
 
-        public static boolean isHigherThanWg(ServerLevel level, BlockPos blockPos) {
-            BlockPos topPos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, blockPos);
+        public static boolean isInStorm(ServerLevel level, BlockPos blockPos) {
+            BlockPos topPos = level.getHeightmapPos(Heightmap.Types.WORLD_SURFACE_WG, blockPos).below();
+            if (level.getBlockState(topPos).is(BlockTags.LEAVES)) {
+                topPos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, blockPos).below();
+            }
 
             return topPos.getY() <= blockPos.getY();
         }

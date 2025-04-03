@@ -85,6 +85,7 @@ minecraft {
 
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            environment "AWT_TOOLKIT", "MToolkit"
             property 'forge.enabledGameTestNamespaces', mod_id
         }
 
@@ -153,7 +154,7 @@ dependencies {
 
 //    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-//    implementation fg.deobf("maven.modrinth:x3HZvrj6:BuPtsmaI")
+//    implementation fg.deobf("maven.modrinth:x3HZvrj6:X2smCkoc")
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

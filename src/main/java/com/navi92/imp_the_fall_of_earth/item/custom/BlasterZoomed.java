@@ -20,7 +20,7 @@ public class BlasterZoomed extends Blaster {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         if (pUsedHand == InteractionHand.MAIN_HAND) {
-            pPlayer.setItemInHand(pUsedHand, Blaster.getByColor(color, itemStack.getDamageValue(), wait, isShot));
+            pPlayer.setItemInHand(pUsedHand, Blaster.getByColor(color, itemStack.getDamageValue(), getWait(itemStack), isShot(itemStack)));
 
             return InteractionResultHolder.success(itemStack);
         }
@@ -46,9 +46,10 @@ public class BlasterZoomed extends Blaster {
 
     public static ItemStack getInstanceWithArgs(Item item, int damage, int wait, boolean isShot) {
         BlasterZoomed blaster = (BlasterZoomed) item;
-        blaster.setShot(isShot).setWait(wait);
         ItemStack itemStack = item.getDefaultInstance();
         itemStack.setDamageValue(damage);
+        setShot(itemStack, isShot);
+        setWait(itemStack, wait);
         return itemStack;
     }
 }

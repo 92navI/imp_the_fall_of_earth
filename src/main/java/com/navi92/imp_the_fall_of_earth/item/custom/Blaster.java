@@ -4,11 +4,12 @@ import com.navi92.imp_the_fall_of_earth.entity.custom.BlasterChargeEntity;
 import com.navi92.imp_the_fall_of_earth.item.ModItems;
 import com.navi92.imp_the_fall_of_earth.main.Config;
 import com.navi92.imp_the_fall_of_earth.sound.ModSounds;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -20,10 +21,6 @@ public class Blaster extends Item implements Shootable {
 
     public int color;
 
-    public int wait;
-
-    public boolean isShot;
-
     public Blaster(Properties pProperties, int color) {
         super(pProperties);
         this.color = color;
@@ -33,7 +30,7 @@ public class Blaster extends Item implements Shootable {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemStack = pPlayer.getItemInHand(pUsedHand);
         if (pUsedHand == InteractionHand.MAIN_HAND) {
-            pPlayer.setItemInHand(pUsedHand, BlasterZoomed.getByColor(color, itemStack.getDamageValue(), wait, isShot));
+            pPlayer.setItemInHand(pUsedHand, BlasterZoomed.getByColor(color, itemStack.getDamageValue(), getWait(itemStack), isShot(itemStack)));
 
             return InteractionResultHolder.fail(itemStack);
         }
@@ -62,27 +59,32 @@ public class Blaster extends Item implements Shootable {
     }
 
     private void updateItemDamage(Player player) {
+        ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
-        int damage = player.getItemInHand(InteractionHand.MAIN_HAND).getDamageValue() + 10;
-        player.getItemInHand(InteractionHand.MAIN_HAND).setDamageValue(damage);
-        isShot = true;
-        wait = 50;
-
+        int damage = stack.getDamageValue() + 10;
+        stack.setDamageValue(damage);
+        setShot(stack, true);
+        setWait(stack, 25);
     }
 
     @Override
-    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        if (isShot) {
-            if (pStack.getDamageValue() == 0) {
-                isShot = false;
-                return;
-            }
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        if (!level.isClientSide) {
+            ItemStack itemStack = player.getInventory().getItem(slotIndex);
 
-            if (wait > 0) {
-                wait--;
-            } else {
-                int damage = pStack.getDamageValue() - 1;
-                pStack.setDamageValue(damage);
+            if (isShot(stack)) {
+                if (stack.getDamageValue() == 0) {
+                    setShot(stack, false);
+                    return;
+                }
+
+                int wait = getWait(stack);
+                if (wait > 0) {
+                    setWait(stack, wait - 1);
+                } else {
+                    int damage = stack.getDamageValue() - 1;
+                    stack.setDamageValue(damage);
+                }
             }
         }
     }
@@ -90,16 +92,6 @@ public class Blaster extends Item implements Shootable {
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
         return true;
-    }
-
-    public Blaster setWait(int wait) {
-        this.wait = wait;
-        return this;
-    }
-
-    public Blaster setShot(boolean shot) {
-        isShot = shot;
-        return this;
     }
 
     public static ItemStack getByColor(int color, int damage, int wait, boolean isShot) {
@@ -113,9 +105,30 @@ public class Blaster extends Item implements Shootable {
 
     public static ItemStack getInstanceWithArgs(Item item, int damage, int wait, boolean isShot) {
         Blaster blaster = (Blaster) item;
-        blaster.setShot(isShot).setWait(wait);
         ItemStack itemStack = item.getDefaultInstance();
         itemStack.setDamageValue(damage);
+        setShot(itemStack, isShot);
+        setWait(itemStack, wait);
         return itemStack;
+    }
+
+    protected static int getWait(ItemStack itemStack) {
+        return itemStack.getTag().getInt("wait");
+    }
+
+    protected static void setWait(ItemStack itemStack, int value) {
+        CompoundTag tag = itemStack.getOrCreateTag();
+        tag.putInt("wait", value);
+        itemStack.setTag(tag);
+    }
+
+    protected static boolean isShot(ItemStack itemStack) {
+        return itemStack.getTag().getBoolean("isShot");
+    }
+
+    protected static void setShot(ItemStack itemStack, boolean value) {
+        CompoundTag tag = itemStack.getOrCreateTag();
+        tag.putBoolean("isShot", value);
+        itemStack.setTag(tag);
     }
 }
